@@ -1,15 +1,14 @@
 {
-  "name": "shortly-angular",
-  "version": "0.0",
-  "description": "Fantasy Tavern Generator",
-  "author": "Sean Ellison-Chen",
-  "license": "UNLICENSED",
-  "private": false,
-  "engines": {
-    "node": ">=4.0.0"
-  },
-  "dependencies": {
-    "express": "^4.4.5",
-    "mongoose": "^4.1.0",
+  "name"         : "pubCrawl",
+  "version"      : "0.0.0",
+  "description"  : "Fantasy Tavern Generator",
+  "main"         : "server.js",
+  "author"       : "Sean Ellison-Chen",
+  "dependencies" : {
+    "body-parser"    : "^1.4.3",
+    "express"        : "^4.13.4",
+    "method-override": "^2.1.3",
+    "mongoose"       : "^4.4.12",
+    "morgan"         : "^1.1.1"
   }
 }
