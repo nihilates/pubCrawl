@@ -1,0 +1,15 @@
+{
+  "name": "shortly-angular",
+  "version": "0.0",
+  "description": "Fantasy Tavern Generator",
+  "author": "Sean Ellison-Chen",
+  "license": "UNLICENSED",
+  "private": false,
+  "engines": {
+    "node": ">=4.0.0"
+  },
+  "dependencies": {
+    "express": "^4.4.5",
+    "mongoose": "^4.1.0",
+  }
+}
