@@ -19,8 +19,7 @@ app.use(bodyParser.json() );
 app.use(bodyParser.json({ type: 'application/vdn.api+json'}) );
 app.use(methodOverride() );
 
-
-//MODELS
+//model
 var Tavern = mongoose.model('Tavern', {
   name: String,
   patrons: Array,
@@ -35,8 +34,7 @@ var Patron = mongoose.model('Patron', {
   class: String
 });
 
-
-//ROUTES
+//Routes
 //GET
 app.get('/api/taverns', function(req, res) {
   Tavern.find(function(err, taverns){
@@ -49,7 +47,9 @@ app.get('/api/taverns', function(req, res) {
 });//end of get
 //POST
 app.post('/api/taverns', function(req, res) {
+  var tavName = roll.makeTavern(req.body.theme, req.body.quality);
   Tavern.create({
+    name: tavName.name,
     size: req.body.size,
     theme: req.body.theme,
     quality: req.body.quality
@@ -84,7 +84,7 @@ app.delete('/api/taverns/:tavern_id', function(req, res) {
         });
       }
   });
-});//end of delete
+});
 //INITIAL SETUP
 app.get('*', function(req, res) {
   res.sendFile(__dirname + '/public/index.html');
