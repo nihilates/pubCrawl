@@ -1,13 +1,12 @@
-//module.exports = {
-var dnd = {
+module.exports = {
   //method to randomly generate NPC
-  makeCrowd: function(tavSize, tavTheme) {
+  makeCrowd: function(tavSize="Medium", tavTheme="Human") {
 
     var roll = function(max) {
       return Math.floor(Math.random()*max)
     }; //randomly generated number
 
-    var randomNPC = function(tavTheme) {
+    var randomNPC = function(tavTheme="Human") {
       var gender = ['m', 'f'][roll(2)];
 
       var racialOptions = ['human','dwarf', 'elf'];
@@ -84,13 +83,13 @@ var dnd = {
     return crowd;
   },//end of makeNPC method
 
-  makeTavern: function (tavTheme, tavQuality) {
+  makeTavern: function (tavTheme="Human", tavQuality="Average") {
 
     var roll = function(max) {
       return Math.floor(Math.random()*max)
     }; //randomly generated number
 
-    var randomTavName = function (tavTheme, tavQuality) {
+    var randomTavName = function (tavTheme="Human", tavQuality="Average") {
       var tavernPrefix = {
         human: {
           Sqaulor: ['The Rusty', 'The Filthy', 'Vile', 'Broken', 'Raspscallion\'s', 'The Windy', 'Gnoll\'s', 'Papa\'s', 'The Scurvy', 'Midnight'],
@@ -122,4 +121,5 @@ var dnd = {
     };//end of randomTavName
     return {name: randomTavName(tavTheme, tavQuality)};
   }//end of makeTavern
+
 };//end of module
