@@ -8,10 +8,8 @@ var roll = require('./gen.js');
 //Setup app to use express
 var app = express();
 
-
 //Connect to database
 mongoose.connect('mongodb://localhost/beta');
-
 
 //Configure the App with Middleware
 app.use(express.static(__dirname + '/public') );
@@ -22,7 +20,7 @@ app.use(bodyParser.json({ type: 'application/vdn.api+json'}) );
 app.use(methodOverride() );
 
 
-//Models
+//MODELS
 var Tavern = mongoose.model('Tavern', {
   name: String,
   patrons: Array,
@@ -38,6 +36,61 @@ var Patron = mongoose.model('Patron', {
 });
 
 
-//List to the Port
+//ROUTES
+//GET
+app.get('/api/taverns', function(req, res) {
+  Tavern.find(function(err, taverns){
+    if (err) {
+      res.send(err);
+    } else {
+      res.json(taverns);
+    }
+  });
+});//end of get
+//POST
+app.post('/api/taverns', function(req, res) {
+  Tavern.create({
+    size: req.body.size,
+    theme: req.body.theme,
+    quality: req.body.quality
+  }, function(err, tavern) {
+    if (err) {
+      res.send(err);
+    } else {
+      Tavern.find(function(err, taverns) {
+        if (err) {
+          res.send(err);
+        } else {
+          res.json(taverns);
+        }
+      });
+    }
+  });
+});//end of post
+//DELETE
+app.delete('/api/taverns/:tavern_id', function(req, res) {
+  Tavern.remove({
+      _id : req.params.tavern_id
+  }, function(err, tavern) {
+      if (err) {
+        res.send(err);
+      } else {
+        Tavern.find(function(err, taverns) {
+          if (err) {
+            res.send(err)
+          } else {
+            res.json(taverns);
+          }
+        });
+      }
+  });
+});//end of delete
+//INITIAL SETUP
+app.get('*', function(req, res) {
+  res.sendFile(__dirname + '/public/index.html');
+});
+
+
+//Establish listening
 app.listen(8080);
 console.log("The Hearth is Roaring on port 8080");
