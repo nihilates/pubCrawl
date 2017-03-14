@@ -14,16 +14,7 @@
 
   <body ng-controller="mainController">
     <div class="container">
-      <h1>Our story begins in a tavern...</h1>
-
-      <div id="tavern-list" class="row">
-          <div class="checkbox" ng-repeat="tavern in taverns">
-            <label>
-              <div ng-click="deleteTavern(tavern._id)">{{ tavern.name }}</div>
-            </label>
-          </div>
-      </div>
-
+      <h1>{{ randomText() }}</h1>
       <div id="tavern-form" class="row">
           <label for="Size">Size</label>
           <select name="Size" ng-model="tavernData.size">
@@ -45,6 +36,24 @@
           </select>
       <button type="submit" ng-click="createTavern()">Roll 'em</button>
     </div>
+
+      <div id="tavern-list" class="row">
+          <div class="single-tavern" ng-repeat="tavern in taverns">
+            <label>
+              <div ng-click="showme=!showme">{{ tavern.name }}</div>
+              <div ng-show="showme">
+                <div ng-repeat="patron in tavern.patrons">
+                  <div class='patron-name'>Name: {{ patron.name }}</div>
+                  <div class='patron-gender'>Gender: {{ patron.gender }}</div>
+                  <div class='patron-race'>Race: {{ patron.race }}</div>
+                  <div class='patron-class'>Class: {{ patron.class }}</div>
+                </div>
+              </div>
+            </label>
+            <button ng-click="deleteTavern(tavern._id)">Delete</button>
+          </div>
+      </div>
+
 
   </body>
 </html>
