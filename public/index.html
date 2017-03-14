@@ -1,0 +1,50 @@
+<!doctype html>
+
+<html ng-app="pubCrawl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>pubCrawl</title>
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+  <script src="core.js"></script>
+  </head>
+
+  <body ng-controller="mainController">
+    <div class="container">
+      <h1>Our story begins in a tavern...</h1>
+
+      <div id="tavern-list" class="row">
+          <div class="checkbox" ng-repeat="tavern in taverns">
+            <label>
+              <div ng-click="deleteTavern(tavern._id)">{{ tavern.name }}</div>
+            </label>
+          </div>
+      </div>
+
+      <div id="tavern-form" class="row">
+          <label for="Size">Size</label>
+          <select name="Size" ng-model="tavernData.size">
+            <option value="Large">Large</option>
+            <option value="Medium">Medium</option>
+            <option value="Small">Small</option>
+          </select>
+          <label for="Theme">Theme</label>
+          <select name="Theme" ng-model="tavernData.theme">
+            <option value="Elven">Elven</option>
+            <option value="Human">Human</option>
+            <option value="Dwarven">Dwarven</option>
+          </select>
+          <label for="Qaulity">Qaulity</label>
+          <select name="Quality" ng-model="tavernData.quality">
+            <option value="Opulent">Opulent</option>
+            <option value="Average">Average</option>
+            <option value="Sqaulor">Sqaulor</option>
+          </select>
+      <button type="submit" ng-click="createTavern()">Roll 'em</button>
+    </div>
+
+  </body>
+</html>
