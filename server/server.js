@@ -9,27 +9,24 @@ var app = express();
 
 //Connect to database
 mongoose.connect('mongodb://localhost/local');
-
-var Tavern = mongoose.model('Tavern', {
-  name: String,
-  theme: String,
-  quality: String,
-  patrons: Number
-});
-
-var Patrons = mongood.model('Patrons', {
-  name: String,
-  class: String,
-  desc: String,
-  stats: Number
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, "Kobolds stole your:") );
+db.once('open', function() {
+  console.log("Tavern\'s open!");
+  //Table Schema
+  var tavern = new mongoose.Schema({
+    name: String,
+    theme: String,
+    quality: String,
+    patrons: Number
+  });
 });
 
 //Configure the App
 app.use(express.static(__dirname + '/public') );
 app.use(morgan('dev') );
-app.use(bodyParser.urlencoded({'extended': 'true'}) );
+app.use(bodyParser.urlencoded({'extended': true}) );
 app.use(bodyParser.json() );
-app.use(bodyParser.json({ type: 'application/vdn.api+json'}) );
 app.use(methodOverride() );
 
 //Establish listening
@@ -41,5 +38,19 @@ console.log("The Pub is Roaring on port 8080");
 app.get('/api/tavern', function(req, res) {
 });//end of get
 //post requests
-app.post('/api/tavern', function(req, res) ) {
+app.post('/api/tavern', function(req, res) {
 });
+
+// var Tavern = mongoose.model('Tavern', {
+  // name: String,
+  // theme: String,
+  // quality: String,
+  // patrons: Number
+// });
+
+// var Patrons = mongoose.model('Patrons', {
+//   name: String,
+//   class: String,
+//   desc: String,
+//   stats: Number
+// });
