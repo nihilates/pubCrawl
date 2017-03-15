@@ -91,7 +91,7 @@ app.get('*', function(req, res) {
   res.sendFile(__dirname + '/public/index.html');
 });
 
-
+var port = process.env.PORT || 8080;
 //Establish listening
-app.listen(8080);
-console.log("The Hearth is Roaring on port 8080");
+app.listen(port);
+console.log("The Hearth is Roaring on port "+port);
