@@ -1,0 +1,33 @@
+Body {
+  padding-top: 50px;
+  font-family: 'Courier';
+  background: url(tavern.png);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+div.staticTitle {
+  text-align: center;
+  font-family: 'Aladin';
+  font-size: 80px;
+  font-weight: 5px;
+}
+
+div.rndmTitle {
+  text-align: center;
+  font-family: 'Aladin';
+}
+
+div.#tavern-form.row {
+  align-content: center;
+}
+
+div.single-tavern.ng-scope {
+  margin-top: 35px;
+  margin-left: 20%;
+}
+
+div.all-patrons {
+  margin-top:20px;
+  margin-left: 10px;
+}

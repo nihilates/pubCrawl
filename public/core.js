@@ -31,4 +31,14 @@ function mainController($scope, $http) {
         console.log('Error: ', data);
       });
   };
+
+  $scope.randomText = function(){
+    var texts = ['Our story begins in a tarvern...',
+      'Roll charisma to seduce the barmaid',
+      'Dwarf Tested, Elf Approved',
+      'We card Halflings',
+      'Dungeons and Flagons!'
+      ];
+    return texts[Math.floor(Math.random()*texts.length)];
+  }
 }

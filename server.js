@@ -9,7 +9,7 @@ var roll = require('./gen.js');
 var app = express();
 
 //Connect to database
-mongoose.connect('mongodb://localhost/beta');
+mongoose.connect('mongodb://localhost/pubcrawl');
 
 //Configure the App with Middleware
 app.use(express.static(__dirname + '/public') );
@@ -90,6 +90,7 @@ app.delete('/api/taverns/:tavern_id', function(req, res) {
 app.get('*', function(req, res) {
   res.sendFile(__dirname + '/public/index.html');
 });
+
 
 //Establish listening
 app.listen(8080);

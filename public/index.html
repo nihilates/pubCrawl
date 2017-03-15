@@ -3,19 +3,21 @@
 <html ng-app="pubCrawl">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>pubCrawl</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <link href='//fonts.googleapis.com/css?family=Aladin' rel='stylesheet'>
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
   <script src="core.js"></script>
-  </head>
+</head>
 
   <body ng-controller="mainController">
     <div class="container">
-      <h1>{{ randomText() }}</h1>
-      <div id="tavern-form" class="row">
+        <div class=staticTitle>pubCrawl</div>
+        <div class=rndmTitle><h1>{{ randomText() }}</h1></div>
+      <div id="tavern-form" class="row" align="center">
           <label for="Size">Size</label>
           <select name="Size" ng-model="tavernData.size">
             <option value="Large">Large</option>
@@ -39,21 +41,21 @@
 
       <div id="tavern-list" class="row">
           <div class="single-tavern" ng-repeat="tavern in taverns">
-            <label>
-              <div ng-click="showme=!showme">{{ tavern.name }}</div>
-              <div ng-show="showme">
-                <div ng-repeat="patron in tavern.patrons">
-                  <div class='patron-name'>Name: {{ patron.name }}</div>
-                  <div class='patron-gender'>Gender: {{ patron.gender }}</div>
-                  <div class='patron-race'>Race: {{ patron.race }}</div>
-                  <div class='patron-class'>Class: {{ patron.class }}</div>
+            <div class=tavName>{{ tavern.name }}</div>
+            <button ng-click="showme=!showme">Show</button>
+            <button ng-click="deleteTavern(tavern._id)">Delete</button>
+            <div class="shown" ng-show="showme">
+              <div ng-repeat="patron in tavern.patrons">
+                <div class='all-patrons'>
+                  <div><span class='patron-name'><b>Name:</b></span> {{ patron.name }}</div>
+                  <div><span class='patron-gender'><b>Gender:</b></span> {{ patron.gender }}</div>
+                  <div><span class='patron-race'><b>Race:</b></span> {{ patron.race }}</div>
+                  <div><span class='patron-class'><b>Class:</b></span> {{ patron.class }}</div>
                 </div>
               </div>
-            </label>
-            <button ng-click="deleteTavern(tavern._id)">Delete</button>
+            </div>
           </div>
       </div>
-
 
   </body>
 </html>
